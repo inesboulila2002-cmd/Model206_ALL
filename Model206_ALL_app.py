@@ -59,14 +59,14 @@ def resolve_mirna(user_input: str):
                     val.get('mirbase_accession'), val.get('family_conservation'))
     return None
 
-# ── Inputs
 st.subheader("Enter Prediction Inputs")
-mirna_input = st.text_input("miRNA name or accession number",
-                             placeholder="e.g. hsa-miR-21, miR-155, MIMAT0000076")
-parasite    = st.selectbox("Parasite",  options['parasite'])
-organism    = st.selectbox("Organism",  options['organism'])
-cell_type   = st.selectbox("Cell type", options['cell_type'])
-time        = st.selectbox("Time (hours post-infection)", options['time'])
+
+mirna_input = st.text_input("miRNA name", placeholder="e.g. hsa-miR-21, miR-155-5p")
+parasite    = st.selectbox("Parasite", ["L.major", "L.donovani", "L.amazonensis", "L. donovani"])
+organism    = st.selectbox("Organism", ["Human", "Mouse"])
+cell_type   = st.selectbox("Cell type", ["PBMC", "THP-1", "BMDM (BALB/c females)", "RAW 264.7",
+                                          "Blood serum + liver (BALB/c )"])
+time        = st.number_input("Time (hours post-infection)", min_value=1, max_value=72, value=24)
 
 resolved = None
 if mirna_input:
