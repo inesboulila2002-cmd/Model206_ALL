@@ -77,9 +77,9 @@ if mirna_input:
         cons_display = CONS_LABELS.get(int(conservation), "Unknown") if conservation is not None else "N/A"
         st.success(f"**miRNA group:** `{group}`")
         col1, col2, col3 = st.columns(3)
-        col1.metric("Family name",        fam_display)
-        col2.metric("Conservation level", cons_display)
-        col3.metric("Accession",          accession or "N/A")
+        col1.markdown(f"**Family name**\n\n{fam_display}")
+        col2.markdown(f"**Conservation level**\n\n{cons_display}")
+        col3.markdown(f"**Accession**\n\n{accession or 'N/A'}")
     else:
         st.warning("miRNA not found in lookup. Prediction will use unknown family.")
 
