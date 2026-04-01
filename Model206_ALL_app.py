@@ -66,7 +66,7 @@ parasite    = st.selectbox("Parasite", ["L.major", "L.donovani", "L.amazonensis"
 organism    = st.selectbox("Organism", ["Human", "Mouse"])
 cell_type   = st.selectbox("Cell type", ["PBMC", "THP-1", "BMDM (BALB/c females)", "RAW 264.7",
                                           "Blood serum + liver (BALB/c )"])
-time        = st.number_input("Time (hours post-infection)", min_value=1, max_value=72, value=24)
+time        = st.number_input("Time (hours post-infection)", min_value=1, value=24)
 
 resolved = None
 if mirna_input:
