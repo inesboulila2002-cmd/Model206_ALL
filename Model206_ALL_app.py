@@ -2,6 +2,18 @@ import streamlit as st
 import pandas as pd
 import pickle
 import re
+from sklearn.base import BaseEstimator, TransformerMixin
+
+# ─────────────────────────────────────────────────────────────
+# Must be defined here so pickle can reconstruct the pipeline
+# ─────────────────────────────────────────────────────────────
+class CastToFloat(BaseEstimator, TransformerMixin):
+    """Casts all columns to float64. Must match the training script exactly."""
+    def fit(self, X, y=None):
+        return self
+    def transform(self, X, y=None):
+        return X.astype(float)
+
 
 st.set_page_config(page_title="Model206 ALL", page_icon="🧬")
 st.title("🧬 miRNA Upregulation Predictor — Model 206 ALL")
@@ -95,8 +107,8 @@ if st.button("Predict", type="primary"):
             family       = None
             conservation = None
 
-        fam_val          = None if (not family or family == 'not_found') else family
-        cons_val         = float(conservation) if conservation is not None else None
+        fam_val           = None if (not family or family == 'not_found') else family
+        cons_val          = float(conservation) if conservation is not None else None
         parasite_celltype = f"{parasite.strip()}_{cell_type.strip()}"
 
         input_df = pd.DataFrame([{
